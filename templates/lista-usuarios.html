@@ -39,7 +39,7 @@
         .user-info {
             font-size: 16px;
         }
-        .delete-button {
+        .button {
             background-color: #d9534f;
             color: white;
             border: none;
@@ -47,8 +47,14 @@
             border-radius: 4px;
             cursor: pointer;
         }
-        .delete-button:hover {
+        .button:hover {
             background-color: #c9302c;
+        }
+        .modify-button {
+            background-color: #5bc0de;
+        }
+        .modify-button:hover {
+            background-color: #31b0d5;
         }
         .add-user {
             display: inline-block;
@@ -73,9 +79,12 @@
                 {% for usuario in usuarios %}
                     <li>
                         <span class="user-info">ID: {{ usuario.id }} - {{ usuario.name }} - {{ usuario.age }} años</span>
-                        <form action="/eliminar-usuario/{{ usuario.id }}" method="post" style="display:inline;">
-                            <button type="submit" class="delete-button">Eliminar</button>
-                        </form>
+                        <div>
+                            <form action="/eliminar-usuario/{{ usuario.id }}" method="post" style="display:inline;">
+                                <button type="submit" class="button">Eliminar</button>
+                            </form>
+                            <a href="/modificar-usuario/{{ usuario.id }}" class="button modify-button">Modificar</a>
+                        </div>
                     </li>
                 {% endfor %}
             </ul>

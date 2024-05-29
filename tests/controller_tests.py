@@ -22,14 +22,14 @@ class ControladorHipotecasTest(unittest.TestCase):
         pass  # No es necesario realizar acciones adicionales después de cada prueba
 
     def test_crear_usuario(self):
-        usuario = self.controlador_usuarios.crear_usuario("Matias Herrera", 68)
+        usuario = self.controlador_usuarios.crear_usuario("Valeria Solarte", 68)
         usuarios = self.controlador_usuarios.obtener_usuarios()
         self.assertEqual(len(usuarios), 1)
-        self.assertEqual(usuario.name, "Matias Herrera")
+        self.assertEqual(usuario.name, "Valeria Solarte")
         self.assertEqual(usuario.age, 68)
 
     def test_crear_hipoteca(self):
-        usuario = self.controlador_usuarios.crear_usuario("Juan José", 75)
+        usuario = self.controlador_usuarios.crear_usuario("Jhair Santamaria", 75)
         monto_total = 200000.0
         fecha_inicio = date(2023, 1, 1)
         cuota_mensual = 1000
@@ -41,8 +41,8 @@ class ControladorHipotecasTest(unittest.TestCase):
         self.assertEqual(hipotecas[0]["cuota_mensual"], cuota_mensual)
 
     def test_modificar_usuario(self):
-        usuario = self.controlador_usuarios.crear_usuario("Matias Herrera", 68)
-        nuevo_nombre = "Matias Herrera Vanegas"
+        usuario = self.controlador_usuarios.crear_usuario("Valeria Solarte", 68)
+        nuevo_nombre = "Valeria Solarte Jimenez"
         nueva_edad = 75
         self.controlador_usuarios.modificar_usuario(usuario.id, nuevo_nombre, nueva_edad)
         usuario_actualizado = self.controlador_usuarios.obtener_usuarios()[0]
@@ -50,21 +50,21 @@ class ControladorHipotecasTest(unittest.TestCase):
         self.assertEqual(usuario_actualizado.age, nueva_edad)
 
     def test_eliminar_usuario(self):
-        usuario = self.controlador_usuarios.crear_usuario("Matias Herrera", 68)
+        usuario = self.controlador_usuarios.crear_usuario("Valeria Solarte", 68)
         self.controlador_usuarios.eliminar_usuario(usuario.id)
         usuarios = self.controlador_usuarios.obtener_usuarios()
         self.assertEqual(len(usuarios), 0)
 
     def test_obtener_usuarios(self):
-        self.controlador_usuarios.crear_usuario("Matias Herrera", 68)
-        self.controlador_usuarios.crear_usuario("Juan José", 75)
+        self.controlador_usuarios.crear_usuario("Valeria Solarte", 68)
+        self.controlador_usuarios.crear_usuario("Jhair Santamaria", 75)
         usuarios = self.controlador_usuarios.obtener_usuarios()
         self.assertEqual(len(usuarios), 2)
-        self.assertEqual(usuarios[0].name, "Matias Herrera")
-        self.assertEqual(usuarios[1].name, "Juan José")
+        self.assertEqual(usuarios[0].name, "Valeria Solarte")
+        self.assertEqual(usuarios[1].name, "Jhair Santamaria")
 
     def test_obtener_hipotecas(self):
-        usuario = self.controlador_usuarios.crear_usuario("Matias Herrera", 68)
+        usuario = self.controlador_usuarios.crear_usuario("Valeria Solarte", 68)
         monto_total = 2000000
         fecha_inicio = date(2023, 1, 1)
         cuota_mensual = 1000
@@ -76,7 +76,7 @@ class ControladorHipotecasTest(unittest.TestCase):
         self.assertEqual(hipotecas[0]["cuota_mensual"], cuota_mensual)
 
     def test_modificar_hipoteca(self):
-        usuario = self.controlador_usuarios.crear_usuario("Diego Sanabria", 75)
+        usuario = self.controlador_usuarios.crear_usuario("Jhair Santamaria", 75)
         monto_total = 350000000
         fecha_inicio = date(2023, 1, 1)
         cuota_mensual = 2250000

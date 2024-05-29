@@ -77,6 +77,25 @@ class ControladorUsuarios:
                 usuario.id = fila['id']
                 usuarios.append(usuario)
         return usuarios
+    
+    def obtener_usuario_por_id(self, usuario_id: int) -> Usuario:
+        """
+        Obtiene un usuario de la base de datos por su ID.
+
+        Args:
+            usuario_id (int): El ID del usuario a obtener.
+
+        Returns:
+            Usuario: El objeto Usuario correspondiente al ID, o None si no existe.
+        """
+        with self.conexion.cursor(cursor_factory=RealDictCursor) as cursor:
+            cursor.execute("""SELECT id, name, age FROM usuarios WHERE id = %s""", (usuario_id,))
+            fila = cursor.fetchone()
+            if fila:
+                usuario = Usuario(fila['name'], fila['age'])
+                usuario.id = fila['id']
+                return usuario
+            return None
 
     def eliminar_usuario(self, usuario_id: int) -> None:
         """

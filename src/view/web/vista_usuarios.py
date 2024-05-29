@@ -36,7 +36,6 @@ def crear_usuario_view(): #create
     except Exception as e:
         return render_template("excepcion.html", mensaje_error=f"Error: {str(e)}")
 
-
 @blueprint.route("/lista-usuarios")
 def lista_usuarios(): #select
     try:
@@ -51,5 +50,28 @@ def eliminar_usuario(usuario_id):
     try:
         controlador_usuarios.eliminar_usuario(usuario_id)
         return redirect(url_for('vista_usuarios.lista_usuarios'))
+    except Exception as e:
+        return render_template("excepcion.html", mensaje_error=str(e))
+    
+
+@blueprint.route("/modificar-usuario/<int:usuario_id>", methods=['POST'])
+def modificar_usuario_view(usuario_id):
+    nombre = request.form.get("nombre")
+    edad = request.form.get("edad")
+    if edad:
+        edad = int(edad)  # Asegurarse de que la edad es un número
+    try:
+        controlador_usuarios.modificar_usuario(usuario_id, nombre, edad)
+        return redirect(url_for('vista_usuarios.lista_usuarios'))
+    except Exception as e:
+        return render_template("excepcion.html", mensaje_error=str(e))
+    
+@blueprint.route("/modificar-usuario/<int:usuario_id>", methods=['GET'])
+def vista_modificar_usuario(usuario_id):
+    try:
+        usuario = controlador_usuarios.obtener_usuario_por_id(usuario_id)
+        if usuario is None:
+            raise Exception("El usuario no existe")
+        return render_template("modificar-usuario.html", usuario=usuario)
     except Exception as e:
         return render_template("excepcion.html", mensaje_error=str(e))
