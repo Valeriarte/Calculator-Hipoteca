@@ -76,7 +76,9 @@ Para hacer uso del aplicativo asegurese de tener instalado las dependencias nece
 
     - Luego de haber ejecutado presiona CTRL+C al local host http://127.0.0.1:5000
 
-    Nota: Antes de calcular la hipoteca, primero crea el usuario
+    Nota: Antes de calcular la hipoteca, primero crea el usuario y para poder ver la lista de hipotecas
+    tienes que ingresar en /lista-hipotecas/ primero el id de la hipoteca, cuando haya
+    cargado la pagina lo borras e ingresas y el id del usuario
 
 
 
