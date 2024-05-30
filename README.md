@@ -70,7 +70,10 @@ Para hacer uso del aplicativo asegurese de tener instalado las dependencias nece
     - Ejecute el siguiente comando: `python interface.py`.
 
 7. Si desea ejecutar la pagina web:
-    - Te ubicas en la raiz del programa, ejecute `python app.py`.
+    - Para ejecutar las pruebas unitarias, desde la carpeta del programa, use el comando:
+
+      Calculator-Hipoteca>python app.py
+
     - Luego de haber ejecutado presiona CTRL+C al local host http://127.0.0.1:5000
 
 
