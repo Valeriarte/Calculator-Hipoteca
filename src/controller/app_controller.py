@@ -96,6 +96,7 @@ class ControladorUsuarios:
                 usuario.id = fila['id']
                 return usuario
             return None
+   
 
     def eliminar_usuario(self, usuario_id: int) -> None:
         """

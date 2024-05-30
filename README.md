@@ -9,7 +9,7 @@ a una persona que ha adquirido una hipoteca inversa.
 - Jhair Santamaria
 
 ## Estructura del proyecto:
-- src: Contiene la lógica de negocio (model), las interfaces gráficas y la pagina web (view) y el controlador (controller).
+- src: Contiene la lógica de negocio (model), las interfaces gráficas y el controlador (controller).
 - tests: Contiene las pruebas unitarias del aplicativo.
 - sql: Contiene los scripts sql para crear las tablas necesarias para el correcto funcionamiento del controlador.
 
@@ -20,7 +20,31 @@ a una persona que ha adquirido una hipoteca inversa.
 
 - Instalar psycopg2 con el comando: pip install psycopg2
 
-La lista de dependencias las encontrará listadas en el archivo 'requirements.txt'. Para descargarlas solo ubiquese en el directorio raíz de la carpeta clonada y ejecute el siguiente comando: `pip install -r requirements.txt`, esto instalará las dependencias necesarias para el funcionamiento del proyecto.
+- Instalar flask con el comando: pip install flask
+
+# Database
+Requisitos:
+Asegúrese de tener una base de datos PostgreSQL y sus respectivos datos de acceso. Modifique el archivo SecretConfig-Sample.py a SecretConfig.py e ingrese en este archivo los datos de conexión a su base de datos.
+
+Establezca el puerto 5432 que es por defecto.
+
+-PGHOST='xxx'
+
+-PGDATABASE='xxxx'
+
+-PGUSER='xxxxx'
+
+-PGPASSWORD='xxx'
+
+-PGPORT = 'xxx'
+
+Configuración de la base de datos
+Esta aplicación requiere que esté creada dos tablas llamadas:
+- Usuarios 
+- Hipotecas 
+
+Utilice los scripts con el comando sql\tabla_usuarios.sql y sql\tabla_hipotecas.sql para crearla antes de ejecutar la aplicación.
+
 
 ## ¿Cómo se usa?
 Para hacer uso del aplicativo asegurese de tener instalado las dependencias necesarias. Una vez tenga las dependencias necesarias prosiga con las instrucciones:
@@ -46,7 +70,7 @@ Para hacer uso del aplicativo asegurese de tener instalado las dependencias nece
     - Ejecute el siguiente comando: `python interface.py`.
 
 7. Si desea ejecutar la pagina web:
-    - Te ubicas en la raiz del programa y ejecute `python app.py`.
+    - Te ubicas en la raiz del programa, ejecute `python app.py`.
 
 
 

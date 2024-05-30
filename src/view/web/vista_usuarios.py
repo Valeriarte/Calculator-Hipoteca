@@ -5,7 +5,6 @@ blueprint = Blueprint( "vista_usuarios", __name__, "templates" )
 import sys
 sys.path.append("src")
 sys.path.append(".")
-from model.user import Usuario
 import controller.app_controller as app_controller
 
 controlador_usuarios = app_controller.ControladorUsuarios()
