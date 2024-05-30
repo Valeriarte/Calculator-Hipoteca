@@ -6,6 +6,8 @@ import sys
 sys.path.append("src")
 sys.path.append(".")
 import controller.app_controller as app_controller
+from model.calculator import Calculator
+import datetime
 
 controlador_usuarios = app_controller.ControladorUsuarios()
 controlador_hipotecas = app_controller.ControladorHipotecas()
@@ -74,3 +76,43 @@ def vista_modificar_usuario(usuario_id):
         return render_template("modificar-usuario.html", usuario=usuario)
     except Exception as e:
         return render_template("excepcion.html", mensaje_error=str(e))
+
+
+@blueprint.route("/nueva-hipoteca")
+def VistaNuevaHipoteca():
+    return render_template("nueva-hipoteca.html")
+
+@blueprint.route("/crear-hipoteca", methods=['POST'])
+def crear_hipoteca_view():
+    usuario_id = request.form.get("usuario_id", type=int)
+    monto_total = request.form.get("monto_total", type=float)
+    fecha_inicio = request.form.get("fecha_inicio")
+    cuota_mensual = request.form.get("cuota_mensual", type=float)
+    esperanza_vida = request.form.get("esperanza_vida", type=int)
+    periodo_pago = request.form.get("periodo_pago", type=int)
+    porcentaje_propiedad = request.form.get("porcentaje_propiedad", type=float)
+    mortgage_type = request.form.get("mortgage_type", type=int)
+
+    usuario = controlador_usuarios.obtener_usuario_por_id(usuario_id)
+    if not usuario:
+        return render_template("excepcion.html", mensaje_error="Usuario no encontrado.")
+
+    try:
+        calculadora = Calculator(monto_total, usuario.age, esperanza_vida, periodo_pago, porcentaje_propiedad, mortgage_type)
+        cuota_mensual = calculadora.calculate_monthly_fee()
+
+        controlador_hipotecas.crear_hipoteca(usuario.id, monto_total, datetime.date.today(), cuota_mensual)
+        return render_template("hipoteca_creada.html", mensaje="Hipoteca creada exitosamente!")
+    except Exception as e:
+        return render_template("excepcion.html", mensaje_error=f"Error al crear hipoteca: {str(e)}")
+
+
+@blueprint.route("/lista-hipotecas/<int:usuario_id>")   
+def lista_hipotecas(usuario_id):
+    try:
+        hipotecas = controlador_hipotecas.obtener_hipotecas(usuario_id)
+        return render_template("lista-hipotecas.html", hipotecas=hipotecas)
+    except Exception as e:
+        return render_template("excepcion.html", mensaje_error=f"Error al obtener hipotecas: {str(e)}")
+    
+

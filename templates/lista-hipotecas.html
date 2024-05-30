@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Hipotecas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Lista de Hipotecas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Hipoteca ID</th>
+                <th>Monto Total</th>
+                <th>Fecha de Inicio</th>
+                <th>Cuota Mensual</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hipoteca in hipotecas %}
+            <tr>
+                <td>{{ hipoteca.id }}</td>
+                <td>{{ hipoteca.monto_total }}</td>
+                <td>{{ hipoteca.fecha_inicio }}</td>
+                <td>{{ hipoteca.cuota_mensual }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <a href="/">Volver al inicio</a>
+        </table>
+    </table>
+</body>
+</html>

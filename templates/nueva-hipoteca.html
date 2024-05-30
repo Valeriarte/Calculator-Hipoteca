@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Hipoteca</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #0056b3;
+        }
+        form {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        div {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Crear Nueva Hipoteca</h1>
+    <h2>Antes de crear la hipoteca verifique cual es su ID dirigiendose a la lista de usuarios</h2>
+
+    <a href="/lista-usuarios" class="add-user">Lista Usuarios Registrados</a>
+    
+    <form action="{{ url_for('vista_usuarios.crear_hipoteca_view') }}" method="post">
+        <div>
+            <label for="usuario_id">ID de Usuario:</label>
+            <input type="number" id="usuario_id" name="usuario_id" required>
+        </div>
+        <div>
+            <label for="monto_total">Monto Total:</label>
+            <input type="number" id="monto_total" name="monto_total" step="0.01" required>
+        </div>
+        <div>
+            <label for="fecha_inicio">Fecha de Inicio:</label>
+            <input type="date" id="fecha_inicio" name="fecha_inicio" required>
+        </div>
+        <div>
+            <label for="cuota_mensual">Cuota Mensual:</label>
+            <input type="number" id="cuota_mensual" name="cuota_mensual" step="0.01" required>
+        </div>
+        <div>
+            <label for="esperanza_vida">Esperanza de Vida (años):</label>
+            <input type="number" id="esperanza_vida" name="esperanza_vida" required>
+        </div>
+        <div>
+            <label for="periodo_pago">Período de Pago (años):</label>
+            <input type="number" id="periodo_pago" name="periodo_pago" required>
+        </div>
+        <div>
+            <label for="porcentaje_propiedad">Porcentaje de Propiedad (%):</label>
+            <input type="number" id="porcentaje_propiedad" name="porcentaje_propiedad" step="0.01" required>
+        </div>
+        <div>
+            <label for="mortgage_type">Tipo de Hipoteca:</label>
+            <select id="mortgage_type" name="mortgage_type" required>
+                <option value="1">Hipoteca Vitalicia</option>
+                <option value="2">Hipoteca Parcial</option>
+                <option value="3">Hipoteca Total</option>
+            </select>
+        </div>
+        <button type="submit">Crear Hipoteca</button>
+        <a href="/">Volver al inicio</a>
+    </form>
+</body>
+</html>

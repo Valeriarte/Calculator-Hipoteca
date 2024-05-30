@@ -24,7 +24,7 @@ a una persona que ha adquirido una hipoteca inversa.
 
 # Database
 Requisitos:
-Asegúrese de tener una base de datos PostgreSQL y sus respectivos datos de acceso. Modifique el archivo SecretConfig-Sample.py a SecretConfig.py e ingrese en este archivo los datos de conexión a su base de datos.
+Asegúrese de tener una base de datos PostgreSQL y sus respectivos datos de acceso. Modifique el archivo SecretConfig-Sample.py a secret_config.py e ingrese en este archivo los datos de conexión a su base de datos.
 
 Establezca el puerto 5432 que es por defecto.
 
@@ -71,6 +71,7 @@ Para hacer uso del aplicativo asegurese de tener instalado las dependencias nece
 
 7. Si desea ejecutar la pagina web:
     - Te ubicas en la raiz del programa, ejecute `python app.py`.
+    - Luego de haber ejecutado presiona CTRL+C al local host http://127.0.0.1:5000
 
 
 

@@ -14,11 +14,13 @@ app = Flask(__name__)
 
 from view.web import vista_usuarios 
 
+
 # Flask constructor: crea una variable que nos servirá para comunicarle a Flask
 # la configuración que queremos para nuestra aplicación
 app = Flask(__name__)     
 
 app.register_blueprint( vista_usuarios.blueprint )
+
 
 # Esta linea permite que nuestra aplicación se ejecute individualmente
 if __name__=='__main__':

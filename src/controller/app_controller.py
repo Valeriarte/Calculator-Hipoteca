@@ -215,6 +215,54 @@ class ControladorHipotecas:
             hipotecas = cursor.fetchall()
         return hipotecas
     
+    
+    def obtener_hipoteca_por_id(self, hipoteca_id: int) -> dict:
+        """
+        Obtiene una hipoteca específica por su ID.
+
+        Args:
+            hipoteca_id (int): El ID de la hipoteca.
+
+        Returns:
+            dict: Un diccionario que representa la hipoteca.
+        """
+        with self.conexion.cursor(cursor_factory=RealDictCursor) as cursor:
+            cursor.execute("""SELECT id, usuario_id, monto_total, fecha_inicio, cuota_mensual
+                              FROM hipotecas
+                              WHERE id = %s""", (hipoteca_id,))
+            hipoteca = cursor.fetchone()
+        return hipoteca
+    
+    def obtener_todas_hipotecas(self) -> list[dict]:
+        """
+        Obtiene todas las hipotecas de todos los usuarios.
+
+        Returns:
+            list[dict]: Una lista de diccionarios, donde cada diccionario representa una hipoteca.
+        """
+        hipotecas = []
+        with self.conexion.cursor(cursor_factory=RealDictCursor) as cursor:
+            cursor.execute("""SELECT id, usuario_id, monto_total, fecha_inicio, cuota_mensual FROM hipotecas""")
+            hipotecas = cursor.fetchall()
+        return hipotecas
+
+    def obtener_hipoteca_por_id(self, hipoteca_id: int) -> dict:
+        """
+        Obtiene una hipoteca específica por su ID.
+
+        Args:
+            hipoteca_id (int): El ID de la hipoteca.
+
+        Returns:
+            dict: Un diccionario que representa la hipoteca.
+        """
+        with self.conexion.cursor(cursor_factory=RealDictCursor) as cursor:
+            cursor.execute("""SELECT id, usuario_id, monto_total, fecha_inicio, cuota_mensual
+                              FROM hipotecas
+                              WHERE id = %s""", (hipoteca_id,))
+            hipoteca = cursor.fetchone()
+        return hipoteca
+
     def modificar_hipoteca(self, hipoteca_id: int, nueva_cuota_mensual: float) -> None:
         """
         Modifica una hipoteca existente.
@@ -239,3 +287,8 @@ class ControladorHipotecas:
             except psycopg2.Error as e:
                 self.conexion.rollback()
                 raise Exception(f"Error al modificar hipoteca: {e}")
+    
+    
+            
+        
+
